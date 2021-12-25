@@ -1,0 +1,29 @@
+
+Nav{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 57%;
+    margin-top: 15px;
+    margin-left:300px;
+    border-radius: 20px;
+}
+#Image{ 
+    position: relative;
+    height: 60px;
+    margin-bottom: 3px;
+}
+#TextBackground{
+    background-color:#588df6;
+    border-radius: 5px;
+    width: 500px;
+    height: 60px;
+    margin-left: 50px;
+    padding-top: 15px;
+    text-align: center;
+}
+#gtitle{
+    position: relative;
+    font-size: 28px;
+    color:white;
+}
