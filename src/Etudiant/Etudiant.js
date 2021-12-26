@@ -1,12 +1,25 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import "./Etudiant.css";
+import {useState, useEffect} from "react";
 import { Link } from "react-router-dom";
 import NavbarStudent from "./Navbar/Navbar";
 import { GrNext } from "react-icons/gr";
 import $ from "jquery";
 import Scolarite from "./Scolarite/Scolarite";
+import Axios from 'axios'
 
 function Etudiant() {
+  const [mailI,setMailI] = useState("");
+  const [apoge,setApoge] = useState("");
+  const [document,setDocument] = useState("");
+  const submitReview = ()=>{
+      Axios.post("http://localhost:3001/", {
+        mailI:mailI ,
+        apoge:apoge,
+        document:document,
+      });
+  };
+
   var i = 0;
   var the_to ;
   $(document).on("change", "#document", function () {
@@ -108,35 +121,43 @@ function Etudiant() {
               placeholder="Adresse mail institutionnelle"
               type="text"
               required
+              onChange={(e)=>{
+                setMailI(e.target.value)
+              }}
             />
             <input
               placeholder="Numéro apogée"
               type="email"
               name="customerEmail"
               required="true"
+              onChange={(e)=>{
+                setApoge(e.target.value)
+              }}
             />
             <input placeholder="CIN" type="text" name="Code" required="true" />
             <label for="document" placeholder="">
               Document demandé :
             </label>
-            <select id="document" name="document">
+            <select id="document" name="document" onChange={(e)=>{
+              setDocument(e.target.value)
+            }}>
               <option disabled selected value="">
                 {""}
                 -- Sélectionner --{" "}
               </option>
-              <option value="scolarite">Attestation de scolarité</option>
-              <option value="reussite">Attestation de réussite</option>
-              <option value="inscription">Attestation d’inscription</option>
-              <option value="notes">Relevé de notes</option>
-              <option value="demandeStage">Demande de stage</option>
-              <option value="convocationStage">Convocation de stage</option>
+              <option value="scolarite" onClick={submitReview} >Attestation de scolarité</option>
+              <option value="reussite" onClick={submitReview}>Attestation de réussite</option>
+              <option value="inscription" onClick={submitReview}>Attestation d’inscription</option>
+              <option value="notes" onClick={submitReview}>Relevé de notes</option>
+              <option value="demandeStage" onClick={submitReview}>Demande de stage</option>
+              <option value="convocationStage" onClick={submitReview}>Convocation de stage</option>
             </select>
           </form>
         </div>
       </div>
-      <div id="next">
+      <div id="next" onClick={submitReview}>
           <a href="">
-          <button class="btn btn-1 btn-sep icon-info">Suivant</button>
+          <button class="btn btn-1 btn-sep icon-info" >Suivant</button>
           </a>
       </div>
     </>

@@ -16,10 +16,10 @@ function NavbarStudent(){
         <>
      
         <Nav>
-          <NavLink to='/Etudiant'>
+          <NavLink to='/'>
             <img id="Image" src={require('./Logo_ENSA.png')} alt='logo' />
             <div id="TextBackground">
-            <h1 id="gtitle">Espace Etudiant</h1>
+            <h1 id="gtitle">Espace de demandes des documents</h1>
             </div>
           </NavLink>
           <Bars />

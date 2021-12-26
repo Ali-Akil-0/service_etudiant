@@ -1,5 +1,5 @@
 import logo from './logo.svg';
-import React from 'react';
+import React, {Component} from 'react';
 import { Route, Routes } from "react-router-dom";
 import { BrowserRouter } from "react-router-dom";
 import Etudiant from './Etudiant/Etudiant';
@@ -13,25 +13,27 @@ import Succes from './Etudiant/Notes/Success/Success';
 import Entreprise from './Etudiant/ConvocationStage/Entreprise/Entreprise';
 import './App.css';
 
-function App() {
-  return (
-    <BrowserRouter>
-    <div className="App">
-        <Routes>
-          <Route path="/Etudiant" element={<Etudiant/>} />
-          <Route path="/Scolarite" element={<Scolarite/>} />
-          <Route path="/Reussite" element={<Reussite/>} />
-          <Route path="/Notes" element={<Notes/>} />
-          <Route path="/Inscription" element={<Inscription/>} />
-          <Route path="/DemandeStage" element={<DemandeStage/>} />
-          <Route path="/ConvocationStage" element={<ConvocationStage/>} />
-          <Route path="/Succes" element={<Succes/>} />
-          <Route path="/Entreprise" element={<Entreprise/>} />
+class App extends Component {
+  render() {
+    return (
+      <BrowserRouter>
+      <div className="App">
+          <Routes>
+            <Route path="/" element={<Etudiant/>} />
+            <Route path="/Scolarite" element={<Scolarite/>} />
+            <Route path="/Reussite" element={<Reussite/>} />
+            <Route path="/Notes" element={<Notes/>} />
+            <Route path="/Inscription" element={<Inscription/>} />
+            <Route path="/DemandeStage" element={<DemandeStage/>} />
+            <Route path="/ConvocationStage" element={<ConvocationStage/>} />
+            <Route path="/Succes" element={<Succes/>} />
+            <Route path="/Entreprise" element={<Entreprise/>} />
 
-        </Routes>
-      </div>
-    </BrowserRouter>
-  );
+          </Routes>
+        </div>
+      </BrowserRouter>
+    );
+  }
 }
 
 export default App;

@@ -32,7 +32,7 @@ function Notes() {
               <option value="2018">2018</option>
             </select>
             <div id="next">
-              <Link to="/Etudiant">
+              <Link to="/">
             <button class="btn1 btn--1 btn-sep-1" >Annuler</button>
             </Link>
             <Link to="/Succes">
