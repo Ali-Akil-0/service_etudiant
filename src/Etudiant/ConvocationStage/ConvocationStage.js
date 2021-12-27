@@ -1,10 +1,20 @@
 import "./ConvocationStage.css";
 import { Link } from "react-router-dom";
+import {useState} from "react";
+import Axios from 'axios'
 import NavbarStudent from "../Navbar/Navbar";
-import $ from 'jquery';
 
 function ConvocationStage() {
-
+  const [tel,setTel] = useState("");
+  const [startDate,setStartDate] = useState("");
+  const [enddate,setEndDate] = useState("");
+  const submitReview3 = ()=>{
+      Axios.post("http://localhost:3001/Convocation", {
+        tel:tel ,
+        startDate:startDate,
+        enddate:enddate,
+      });
+  };
 
   return (
     <>
@@ -16,6 +26,10 @@ function ConvocationStage() {
               placeholder="Numéro de téléphone"
               type="text"
               required
+              onChange={(e)=>{
+                setTel(e.target.value)
+              }}
+
             />
             <br></br>
             <div class="periode">
@@ -27,24 +41,30 @@ function ConvocationStage() {
                <label>
                De
                </label>
-                <input type="date" name="startDtae" required/>
+                <input type="date" name="startDtae" required 
+                 onChange={(e)=>{
+                  setStartDate(e.target.value)
+                }}/>
                 <label>
                    À
                </label>
-               <input type="date" name="endDtae" required/>
+               <input type="date" name="endDate" required
+               onChange={(e)=>{
+                setEndDate(e.target.value)
+              }}/>
                </div>
               <br/>
               <label>
               Copie de l’assurance
                </label>
                <br/>
-               <input type="file" id="upload" name="upload" accept="application/pdf,application/vnd.ms-excel"/>
+               <input type="file" id="upload" name="upload" accept="application/pdf,application/vnd.ms-excel" />
 
           </form>
         </div>
       </div>
-      <div id="next">
-              <Link to="/">
+      <div id="next" onClick={submitReview3} >
+              <Link to="/" >
             <button class="btn1 btn--1 btn-sep-1" >Annuler</button>
             </Link>
             <Link to="/Entreprise">

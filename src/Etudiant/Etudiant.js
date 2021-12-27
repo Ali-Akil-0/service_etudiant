@@ -1,5 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import "./Etudiant.css";
+import { Component } from "react";
 import {useState, useEffect} from "react";
 import { Link } from "react-router-dom";
 import NavbarStudent from "./Navbar/Navbar";
@@ -11,18 +12,20 @@ import Axios from 'axios'
 function Etudiant() {
   const [mailI,setMailI] = useState("");
   const [apoge,setApoge] = useState("");
+  const [cin,setCin] = useState("");
   const [document,setDocument] = useState("");
   const submitReview = ()=>{
       Axios.post("http://localhost:3001/", {
         mailI:mailI ,
         apoge:apoge,
         document:document,
+        cin:cin,
       });
   };
 
   var i = 0;
   var the_to ;
-  $(document).on("change", "#document", function () {
+  $("#document").click(function () {
     var checkForm ;
     var txt;
     var trying = "scolarite";
@@ -134,7 +137,9 @@ function Etudiant() {
                 setApoge(e.target.value)
               }}
             />
-            <input placeholder="CIN" type="text" name="Code" required="true" />
+            <input placeholder="CIN" type="text" name="Code" required="true" onChange={(e)=>{
+              setCin(e.target.value);
+            }} />
             <label for="document" placeholder="">
               Document demandé :
             </label>
@@ -145,12 +150,12 @@ function Etudiant() {
                 {""}
                 -- Sélectionner --{" "}
               </option>
-              <option value="scolarite" onClick={submitReview} >Attestation de scolarité</option>
-              <option value="reussite" onClick={submitReview}>Attestation de réussite</option>
-              <option value="inscription" onClick={submitReview}>Attestation d’inscription</option>
-              <option value="notes" onClick={submitReview}>Relevé de notes</option>
-              <option value="demandeStage" onClick={submitReview}>Demande de stage</option>
-              <option value="convocationStage" onClick={submitReview}>Convocation de stage</option>
+              <option value="scolarite" >Attestation de scolarité</option>
+              <option value="reussite"  >Attestation de réussite</option>
+              <option value="inscription"  >Attestation d’inscription</option>
+              <option value="notes"  >Relevé de notes</option>
+              <option value="demandeStage" >Demande de stage</option>
+              <option value="convocationStage"  >Convocation de stage</option>
             </select>
           </form>
         </div>

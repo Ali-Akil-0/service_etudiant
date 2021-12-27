@@ -1,6 +1,8 @@
 
-#Scolarite{
-    margin-top: 460px;
+#testScolarite{
+    position: absolute ;
+    margin-top: 260px;
+    margin-left:300px;
 }
 #successButton{
     background:hsl(221, 82%, 53%);
