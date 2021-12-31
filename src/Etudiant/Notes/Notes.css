@@ -1,5 +1,5 @@
 #notes{
-    margin-top:150px;
+    margin-top:200px;
 }
 
 #documentNotes{
@@ -13,6 +13,7 @@
         text-align: center;
         cursor: pointer;
         height: 35px;
+        margin-bottom: 250px;
 }
 
 

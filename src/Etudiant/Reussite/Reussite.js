@@ -1,26 +1,66 @@
 import "./Reussite.css";
+import {useState} from "react";
 import { Link } from "react-router-dom";
 import NavbarStudent from "../Navbar/Navbar";
 import $ from 'jquery';
-
+import React , {useEffect} from 'react';
+import  Axios from "axios";
 function Reussite() {
+  var test = sessionStorage.getItem('apoge');
+  console.log("Testing attention please : " + test);
+  console.log("ABove is the test check it out");
 
+  const [AnneeAttestation, setAnneeAttestation] = useState("");
+
+  const submitReview2 = () => {
+    Axios.post("http://localhost:3001/Reussite", {
+      AnneeAttestation: AnneeAttestation,
+      test:test,
+    });
+  }
+
+  $(document).on("change", "#documentNotes", function () {
+    var checkForm;
+    var txt;
+    txt = $(this).find("option:selected").text();
+    console.log($(this).find("option:selected").val());
+    $("#next").css("cursor", "pointer");
+    $(".btn--1 ").css("background", "#e06666");
+    $(".btn-2").css("background", "#13ad28");
+    $(".btn1").css("opacity", "1");
+    $(".btn2").css("opacity", "1");
+  });
 
   return (
     <>
-        <NavbarStudent />
-        <div id="headercontainer">
-        <h1 id="Scolarite">Votre demande a été envoyée avec succès !</h1>
-        </div>
-     
-     <div id="next">
-         <Link to="/">
-          <button class="btn btn-1 btn-sep icon-info" id="successButton">Retourner à la page d'accueil</button>
-          </Link>
+      <NavbarStudent />
+      <h1 id="notes">Attestation de Réussite</h1>
+      <select
+        id="documentNotes"
+        name="documentNotes"
+        onChange={(e) => {
+          setAnneeAttestation(e.target.value);
+        }}
+      >
+        <option disabled selected value="">
+          {""}
+          -- Sélectionner --{" "}
+        </option>
+        <option value="2021">2021</option>
+        <option value="2020">2020</option>
+        <option value="2019">2019</option>
+        <option value="2018">2018</option>
+      </select>
+      <div id="next" onClick={submitReview2}>
+        <Link to="/">
+          <button class="btn1 btn--1 btn-sep-1">Annuler</button>
+        </Link>
+        <Link to="/Succes">
+          <button class="btn2 btn-2 btn-sep-2">Envoyer</button>
+        </Link>
       </div>
     </>
   );
-
 }
 
 export default Reussite;

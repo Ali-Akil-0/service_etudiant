@@ -5,7 +5,16 @@ import Axios from "axios";
 import {useState} from "react";
 
 function Entreprise() {
+  var testApoge = sessionStorage.getItem('apoge');
+  var testTel = sessionStorage.getItem('tel');
+  var testStartDate = sessionStorage.getItem('startDate');
+  var testEndDate = sessionStorage.getItem('enddate');
 
+  console.log("Testing Apoge attention please : "+testApoge);
+  console.log("Testing Telephone attention please : "+testTel);
+  console.log("Testing The start date attention please : "+testStartDate);
+  console.log("Testing The end date attention please : "+testEndDate);
+  console.log("ABove is the test check it out");
   const [raison,setRaison] = useState("");
   const [addresse,setAddresse] = useState("");
   const [email,setEmail] = useState("");
@@ -16,6 +25,11 @@ function Entreprise() {
         addresse:addresse,
         email:email,
         nomEncadrant:nomEncadrant,
+        testTel:testTel,
+        testStartDate:testStartDate,
+        testEndDate:testEndDate,
+        testApoge:testApoge,
+
       });
   };
  

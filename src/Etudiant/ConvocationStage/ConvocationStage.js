@@ -5,15 +5,30 @@ import Axios from 'axios'
 import NavbarStudent from "../Navbar/Navbar";
 
 function ConvocationStage() {
+  
+  
+  // var test = sessionStorage.getItem('apoge');
+  // console.log("Testing attention please : "+test);
+  // console.log("ABove is the test check it out");
   const [tel,setTel] = useState("");
   const [startDate,setStartDate] = useState("");
   const [enddate,setEndDate] = useState("");
   const submitReview3 = ()=>{
-      Axios.post("http://localhost:3001/Convocation", {
-        tel:tel ,
-        startDate:startDate,
-        enddate:enddate,
-      });
+      const files = document.getElementById("upload");
+      const formData = new FormData();
+        for(let i =0; i < files.files.length; i++) {
+            formData.append("image", files.files[i]);
+    }
+    fetch("http://localhost:3001/ConvocationStage", {
+        method: 'post',
+        body: formData
+    })
+        .then((res) => console.log(res))
+        .catch((err) => ("Error occured", err));
+
+      sessionStorage.setItem('tel' ,[tel]);
+      sessionStorage.setItem('startDate' ,[startDate]);
+      sessionStorage.setItem('enddate' ,[enddate]);
   };
 
   return (
@@ -58,8 +73,7 @@ function ConvocationStage() {
               Copie de l’assurance
                </label>
                <br/>
-               <input type="file" id="upload" name="upload" accept="application/pdf,application/vnd.ms-excel" />
-
+               <input type="file" multiple id="upload" name="upload" accept="application/pdf,application/vnd.ms-excel" />
           </form>
         </div>
       </div>
@@ -70,9 +84,7 @@ function ConvocationStage() {
             <Link to="/Entreprise">
             <button class="btn2 btn-2 btn-sep-2" id="Button2">Envoyer</button>
             </Link>
-       </div>
-          
-     
+       </div>     
     </>
   );
 

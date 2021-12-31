@@ -1,9 +1,27 @@
 import "./Notes.css";
+import {useState} from "react";
 import { Link } from "react-router-dom";
 import NavbarStudent from "../Navbar/Navbar";
 import $ from 'jquery';
+import React , {useEffect} from 'react';
+// Attention please Axios with {} will fuck you up
+import  Axios from "axios";
 
 function Notes() {
+  var test = sessionStorage.getItem('apoge');
+  console.log("Testing attention please : " + test);
+  console.log("ABove is the test check it out");
+
+  const [AnneeNotes,setAnneeNotes] = useState("");
+  
+
+  const submitReview40 = ()=>{
+      Axios.post("http://localhost:3001/Notes", {
+        AnneeNotes:AnneeNotes ,
+        test:test ,
+      });
+  };
+
   $(document).on("change", "#documentNotes", function () {
     var checkForm ;
     var txt;
@@ -16,12 +34,13 @@ function Notes() {
     $(".btn2").css("opacity", "1");
   });
 
-
   return (
     <>
       <NavbarStudent />
-     <h1 id="notes">Notes</h1>
-     <select id="documentNotes" name="documentNotes">
+     <h1 id="notes">Relevé de Notes</h1>
+     <select id="documentNotes" name="documentNotes"  onChange={(e)=>{
+                setAnneeNotes(e.target.value)
+              }}>
               <option disabled selected value="">
                 {""}
                 -- Sélectionner --{" "}
@@ -31,7 +50,7 @@ function Notes() {
               <option value="2019">2019</option>
               <option value="2018">2018</option>
             </select>
-            <div id="next">
+            <div id="next" onClick={submitReview40}>
               <Link to="/">
             <button class="btn1 btn--1 btn-sep-1" >Annuler</button>
             </Link>

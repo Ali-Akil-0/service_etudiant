@@ -6,6 +6,10 @@ import $ from 'jquery';
 import Axios from 'axios'
 
 function DemandeStage() {
+  var test = sessionStorage.getItem('apoge');
+  console.log("Testing attention please : "+test);
+  console.log("ABove is the test check it out");
+
   const [typeStage,setTypeStage] = useState("");
   const [startDate,setStartDate] = useState("");
   const [enddate,setEndDate] = useState("");
@@ -16,6 +20,7 @@ function DemandeStage() {
         startDate:startDate,
         enddate:enddate,
         nomEntreprise:nomEntreprise,
+        test:test,
       });
   };
   return (
