@@ -28,6 +28,7 @@ app.use(cors());
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+// Etudiant
 app.post("/", (req, res) => {
   const mailI = req.body.mailI;
   const apoge = req.body.apoge;
