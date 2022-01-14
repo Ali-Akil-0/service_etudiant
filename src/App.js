@@ -11,6 +11,7 @@ import DemandeStage from './Etudiant/DemandeStage/DemandeStage';
 import ConvocationStage from './Etudiant/ConvocationStage/ConvocationStage';
 import Succes from './Etudiant/Notes/Success/Success';
 import Entreprise from './Etudiant/ConvocationStage/Entreprise/Entreprise';
+import Profil from './Etudiant/Profil/Profil';
 import './App.css';
 
 class App extends Component {
@@ -28,6 +29,9 @@ class App extends Component {
             <Route path="/ConvocationStage" element={<ConvocationStage/>} />
             <Route path="/Succes" element={<Succes/>} />
             <Route path="/Entreprise" element={<Entreprise/>} />
+            <Route path="/Profil" element={<Profil/>} />
+
+            
 
           </Routes>
         </div>

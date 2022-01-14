@@ -8,13 +8,14 @@ import { GrNext } from "react-icons/gr";
 import $ from "jquery";
 import Scolarite from "./Scolarite/Scolarite";
 import Axios from "axios";
-
 function Etudiant() {
   const [mailI, setMailI] = useState("");
   const [apoge, setApoge] = useState("");
   const [cin, setCin] = useState("");
   const [document, setDocument] = useState("");
   const [joke, setJoke] = useState("");
+  const [joke1, setJoke1] = useState("");
+
   const submitReview = () => {
     Axios.post("http://localhost:3001/", {
       mailI: mailI,
@@ -23,9 +24,17 @@ function Etudiant() {
       cin: cin,
     });
   };
+  sessionStorage.setItem('Email',[mailI]);
+  sessionStorage.setItem('CIN',[cin]);
+  sessionStorage.setItem('apoge',[apoge]);
   // storing the var in a global session 
   sessionStorage.setItem('apoge' ,[apoge]);
+  
     var test = sessionStorage.getItem('apoge');
+    var test2 = sessionStorage.getItem('CIN');
+
+    var test3 = sessionStorage.getItem('Email');
+
     console.log("Testing attention please : "+test);
     console.log("ABove is the test check it out");
     // working on the useEffetct 
@@ -41,10 +50,19 @@ function Etudiant() {
   console.log("the first is " + somejoke);
   console.log("the second one is  :" + [joke]);
   console.log("The joke result is  = " + resultJoke);
+  var somejoke1 = "joke1";
+  var resultJoke1 = somejoke1.localeCompare([joke1]);
+  console.log("joke 2  = ", somejoke1);
+  console.log([joke1]);
 
   // Checking the validation of the code
 
   useEffect(() => {
+    if(resultJoke1==0){
+      $("#next2").css("cursor", "pointer");
+      $(".btn-next2").css("background", "rgb(45, 209, 45)");
+      $(".btn-next2").css("opacity", "1");
+    }
     console.log("The joke result is  = " + resultJoke);
     if (resultJoke == 0) {
       Axios.get("http://localhost:3001/").then((response) => {
@@ -80,7 +98,7 @@ function Etudiant() {
           result1 = response.data[i].EmailInstitutionnel.localeCompare([mailI]);
           if(response.data[i].Apoge==[apoge]){
             result2=0 ; 
-            }
+          }
           result3 = response.data[i].CIN.localeCompare([cin]);
           console.log("For the email : "+result1);
           console.log("For the Apoge : "+result2);
@@ -130,8 +148,10 @@ function Etudiant() {
     console.log($(this).find("option:selected").val());
     console.log(trying);
     $("#next").css("cursor", "pointer");
-    $(".btn").css("background", "hsl(221, 82%, 53%)");
-    $(".btn").css("opacity", "1");
+   
+    $(".btn-1").css("background", "hsl(221, 82%, 53%)");
+    $(".btn-1").css("opacity", "1");
+
     if ($(this).find("option:selected").val() != "") {
       checkForm = ValidateForm();
       if (checkForm != 1) {
@@ -152,6 +172,8 @@ function Etudiant() {
       });
       if (formInvalid) return 1;
     }
+  
+
   });
 
   return (
@@ -166,7 +188,10 @@ function Etudiant() {
           <form>
             <input
               placeholder="Adresse mail institutionnelle"
+              value={test3}
+
               type="text"
+
               required
               onChange={(e) => {
                 setMailI(e.target.value);
@@ -174,6 +199,7 @@ function Etudiant() {
             />
             <input
               placeholder="Numéro apogée"
+              value={test}
               type="email"
               name="customerEmail"
               required
@@ -184,10 +210,13 @@ function Etudiant() {
             <input
               placeholder="CIN"
               type="text"
+              value={test2}
               name="Code"
               required
               onChange={(e) => {
                 setCin(e.target.value);
+                setJoke1("joke1")
+                //here
               }}
             />
             <label for="document" placeholder="">
@@ -200,6 +229,7 @@ function Etudiant() {
               onChange={(e) => {
                 setDocument(e.target.value);
               }}
+              onClick={() => setJoke1("joke1")}
             >
               <option disabled selected value="">
                 {""}
@@ -212,11 +242,28 @@ function Etudiant() {
               <option value="demandeStage">Demande de stage</option>
               <option value="convocationStage">Convocation de stage</option>
             </select>
+            <div class="mybuttons">
             <div id="next" onClick={() => setJoke("joke")}>
               <button type="submit" class="btn btn-1 btn-sep icon-info">
                 Suivant
               </button>
             </div>
+            <div id="next2" >
+              <Link to="/Profil">
+              <button type="submit" class="btn btn-next2 btn-sep icon-info anotherbtn">
+                Profil
+              </button>
+              </Link>
+            </div>
+
+            </div>
+            {/* <div class="profileClickDiv">
+            <Link to={Profil}>
+              <p  class="profileClick">
+                Suivre demandes 
+              </p>
+              </Link>
+            </div> */}
           </form>
         </div>
       </div>

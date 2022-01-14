@@ -46,6 +46,22 @@ app.get("/", (req, res) => {
     }
   );
 });
+
+// Profil :
+app.get("/Profil", (req, res) => {
+  let test = req.query["answer"];
+  console.log("Testing");
+  console.log(test);
+  db.query(
+    "select type_demande,Apoge,Nom,Prenom,Status,date_demande from historique_demandes where Apoge=? ORDER BY type_demande ASC ;",
+    [test],
+    (err, result) => {
+      console.log(result);
+      res.send(result);
+    }
+  );
+});
+// For the email
 // working on scolarite 
 
 app.get("/Scolarite", (req, res) => {

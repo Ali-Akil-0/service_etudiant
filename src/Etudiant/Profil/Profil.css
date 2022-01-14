@@ -1,0 +1,105 @@
+  .profile-img {
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    
+    border-radius: 50%;
+    left: 0;
+    top: 0;
+    margin-top: 120px;
+    margin-left: 100px;
+  }
+  *{
+      overflow: hidden;
+  }
+  .allcontainer{
+      width:1000px;
+      height: 520px;
+  }
+
+  .NomProfile{
+      position: absolute;
+      left: 0;
+      top: 0;
+      margin-left:300px;
+      margin-top: 170px;
+
+      
+  }
+  .NomProfile hr{
+      border-width: 3px;
+  }
+  .InfoDetail{
+      margin: 0;
+      padding: 0;
+      width: 300px;
+  }
+  .ProfilTable{
+      position: relative;
+      left: 0;
+      position: absolute;
+      padding: 0;
+      border-spacing: 40px;
+      margin-bottom: 10px;
+      margin-top: 300px;
+      
+  }
+  .ProfilTable td{
+      border-radius: 10px;
+      width: 20%;
+      text-align: left;
+      padding-top: 0px;
+      box-shadow: 5px 10px;
+  }
+  .InfoDetail{
+      border-style: ridge;
+      position: relative;
+      border: 1px solid black;
+      margin-bottom: 100px;
+      border-radius: 10px;
+      padding:10px;
+      height: 250px;
+      width: 160px;
+      font-size: 13px;
+  }
+  .ProfilTable td h2{
+      color: blue;
+      text-align: left;
+      margin-top: 0px;
+      margin-bottom: 25px;
+  }
+  .ProfilTable td h3{
+    font-weight: bolder;
+    margin-top: 10px;
+    margin-bottom:5px;
+    color: rgb(118, 118, 218);
+    margin-bottom: 15px;
+
+}
+  .ProfilTable  p{
+    margin-bottom: 0px;
+    margin-top: 0px;
+    margin-bottom: 15px;
+
+    }
+    .ProfilTable .InfoCooexion {
+        margin-bottom: 70px;
+    }
+
+.DivColor1, .DivColor6 {
+    background-color:#ffd966;
+}
+.DivColor2, .DivColor5{
+   background-color: #93c47d;
+}
+.DivColor3, .DivColor4{
+   background-color: #ea9999;
+    
+}
+.importantInfo{
+    font-weight: bold;
+    list-style-type: upper-roman;
+}
+.DivColor4 h2{
+    margin-bottom:25px;
+} 
